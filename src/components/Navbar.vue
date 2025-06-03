@@ -8,16 +8,12 @@
      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items- center h-16">
         <!-- Logo -->
-        <div class="flex items-center">
-          <router-link 
-            to="/" 
-            class="flex items-center space-x-2 text-2xl font-bold text-red-500 hover:text-red-400 transition-colors"
-          >
+        <div class="flex items-center space-x-2 text-2xl font-bold text-red-500" href="/">
+            
             <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
               <path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/>
             </svg>
             <span>Nobarin</span>
-          </router-link>
         </div>
 
         <!-- Desktop Navigation -->

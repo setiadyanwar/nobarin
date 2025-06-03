@@ -229,6 +229,11 @@ html {
   padding-right: 2.5rem;
 }
 
+.px-14 {
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
@@ -256,6 +261,13 @@ html {
 .py-20 {
   padding-top: 5rem;
   padding-bottom: 5rem;
+}
+.pt-14 {
+  padding-top: 4rem;
+}
+
+.pt-24 {
+  padding-top: 6rem;
 }
 
 .pt-8 {
@@ -292,6 +304,9 @@ html {
 }
 .mr-2 {
   margin-right: 0.5rem;
+}
+.mt-24{
+  margin-top: 6rem;
 }
 .mt-1 {
   margin-top: 0.25rem;

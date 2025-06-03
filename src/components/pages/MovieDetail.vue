@@ -8,7 +8,7 @@
     <!-- Movie Details -->
     <div v-else-if="movie" class="space-y-8">
       <!-- Back Button -->
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-24 pt-8" style="padding-top: 6rem;">
         <button 
           @click="goBack" 
           class="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors"
