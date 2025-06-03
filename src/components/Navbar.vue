@@ -1,7 +1,12 @@
 <template>
-  <nav class="bg-gray-900 shadow-lg sticky top-0 z-50 border-b border-gray-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16">
+  <nav
+  :class="[
+      isScrolled ? 'bg-gray-900/80 backdrop-blur-md shadow-md border-b border-gray-700' : 'bg-transparent shadow-none border-b border-transparent',
+      'fixed w-full z-50 transition-colors duration-300'
+    ]"
+  >
+     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items- center h-16">
         <!-- Logo -->
         <div class="flex items-center">
           <router-link 
@@ -48,11 +53,12 @@
               @keyup.enter="handleSearch"
               type="text"
               placeholder="Search movies..."
-              class="bg-gray-800 text-white placeholder-gray-400 rounded-lg pl-10 pr-10 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 focus:bg-gray-700 transition-colors w-64"
+              class="bg-transparant text-white placeholder-gray-400 rounded-lg py-2 px-8 focus:outline-none focus:ring-1 focus:ring-white transition-colors w-64"
             />
-            <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="absolute left-2 top-2.5 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
             </svg>
+
             <button 
               v-if="searchQuery"
               @click="clearSearch"
@@ -95,9 +101,9 @@
               @keyup.enter="handleSearch"
               type="text"
               placeholder="Search movies..."
-              class="w-full bg-gray-800 text-white placeholder-gray-400 rounded-lg pl-10 pr-10 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
+              class="w-full bg-gray-800 text-white placeholder-white rounded-lg pl-10 pr-10 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"
             />
-            <svg class="absolute left-3 top-2.5 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="absolute left-3 top-2.5 w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
             </svg>
             <button 
@@ -136,18 +142,29 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-// Favorites store (using localStorage directly)
 const favorites = ref(JSON.parse(localStorage.getItem('movieFavorites') || '[]'))
-
 const favoritesCount = computed(() => favorites.value.length)
 
 const searchQuery = ref('')
 const isMenuOpen = ref(false)
+
+// Add this for scroll detection
+const isScrolled = ref(false)
+const handleScroll = () => {
+  isScrolled.value = window.scrollY > 10
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 
 const handleSearch = () => {
   if (searchQuery.value.trim()) {
